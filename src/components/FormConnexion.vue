@@ -40,7 +40,8 @@ export default {
       visible: "password",
       user: {
         email: "",
-        motdepasse: ""
+        motdepasse: "",
+        
       }
     };
   },
@@ -52,7 +53,7 @@ export default {
           localStorage.setItem("currentUser", JSON.stringify(res.data)); // stock l'user connecté en JSON dans le localStorage
 
           this.$store.commit("setUser", res.data); //stoke dans le store
-
+         
           this.$router.push({ path: "accueil" });
         })
         .catch(err => {

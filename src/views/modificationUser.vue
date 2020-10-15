@@ -25,8 +25,10 @@
         class="input-text input"
         placeholder="num"
       />
-
-      <button @click="modificationUser()">Confirmer</button>
+       <router-link  @click="modificationUser()" :to="'/about/' + user._id">
+       
+      </router-link>
+      <button @click="modificationUser()" :to="'/about/' + user._id" >Confirmer</button>
     </form>
   </div>
 </template>
@@ -41,27 +43,41 @@ export default {
 
   created() {
     this.getCurrentUser();
+
   },
 
   methods: {
+
+    
     async modificationUser() {
       const id_user = this.$store.getters["currentUser"].user._id;
+
       await axios.patch(
         process.env.VUE_APP_BACKEND_URL + "/updateUser/" + id_user,
         {
           email: this.user.email,
           tel: this.user.tel,
-          motdepasse: this.user.motdepasse
-        }
+          motdepasse: this.user.motdepasse,
+
+        },
+
+     
+        
       );
+     
     },
 
     getCurrentUser() {
       this.user.motdepasse = "";
       this.user.tel = this.$store.getters["currentUser"].user.tel; //on donne le store au data
       this.user.email = this.$store.getters["currentUser"].user.email;
-      // return this.$store.getters["currentUser"].user;
+       this.user.$forceUpdate ()
+   
+
+  
     }
+       
+   
   }
 };
 </script>

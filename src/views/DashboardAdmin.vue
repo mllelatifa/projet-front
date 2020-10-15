@@ -55,13 +55,17 @@ export default {
     },
 
     async removeUsers(id) {
-      await axios.delete(process.env.VUE_APP_BACKEND_URL + "/" + id);
+      console.log(id)
+      // await axios.delete(process.env.VUE_APP_BACKEND_URL + "/" + id);
+
+       await axios.delete(process.env.VUE_APP_BACKEND_URL + "/conger/conger/" + id );
+      await axios.delete(process.env.VUE_APP_BACKEND_URL + "/" + id );
       this.getUsers();
     },
-    async editUsers(id) {
-      await axios.patch(process.env.VUE_APP_BACKEND_URL + "/modiUsers/" + id);
-      this.getUsers();
-    }
+    // async editUsers(id) {
+    //   await axios.patch(process.env.VUE_APP_BACKEND_URL + "/modiUsers/" + id);
+    //   this.getUsers();
+    // }
   },
 
   created() {

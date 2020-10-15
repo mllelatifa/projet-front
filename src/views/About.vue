@@ -38,8 +38,20 @@ export default {
   },
 
   methods: {
+
+
+     async getUsers() {
+      console.log("kkk");
+      const apiRes = await axios.get(process.env.VUE_APP_BACKEND_URL + "/");
+      this.user = apiRes.data;
+    },
     async modificationUser(id) {
       await axios.patch(process.env.VUE_APP_BACKEND_URL + "/" + id);
+      this.currentUser();
+      
+      
+      
+    
     }
   }
 };
@@ -55,7 +67,7 @@ h1 {
   text-align: center;
   color: black;
   background-color: red;
-  width: 500px;
+  width: 50%;
 }
 
 h2 {
@@ -63,7 +75,7 @@ h2 {
 }
 section {
   background-color: #1b1464;
-  width: 500px;
+  width: 50%;
   height: 500px;
   border: 2px solid red;
   display: flex;
@@ -87,6 +99,4 @@ div {
   border: 2px solid red;
 }
 
-@media (max-width: 720px) {
-}
 </style>
