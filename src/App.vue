@@ -22,6 +22,8 @@
 <script>
 import NavMain from "@/components/NavMain";
 import NavMobile from "@/components/NavMobile";
+// const storage = localStorage.getItem("currentUser");
+    //const currentUser = storage ? JSON.parse(storage) : null; // convertir la string JSON en object
 export default {
   components: {
     NavMain,
@@ -32,13 +34,11 @@ export default {
 
   computed: {
     currentUser() {
-      const storage = localStorage.getItem("currentUser");
+      const storage = localStorage.getItem("currentUser");//recuprer le curent user dans le local storage
       const currentUser = storage ? JSON.parse(storage) : null; // convertir la string JSON en object
       this.$store.commit("setUser", currentUser); //stoke dans le store
-      return currentUser;
+      return currentUser;//retourne user
     },
-
-
   },
 };
 </script>

@@ -74,9 +74,7 @@ export default {
         conger.est_valider = statut;
 
         await axios.patch(
-          process.env.VUE_APP_BACKEND_URL +
-            "/conger/conger/id_user/" +
-            conger._id,
+          process.env.VUE_APP_BACKEND_URL + "/conger/conger/id_user/" + conger._id,
           conger
         );
         var restants = conger.id_user.restants - conger.jours;
@@ -84,9 +82,7 @@ export default {
 
         if (statut == "validé")
           await axios.patch(
-            process.env.VUE_APP_BACKEND_URL +
-              "/changeRestants/" +
-              conger.id_user._id,
+            process.env.VUE_APP_BACKEND_URL + "/changeRestants/" + conger.id_user._id,
             { restants }
           );
         this.getUsers();

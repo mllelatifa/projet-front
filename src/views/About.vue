@@ -28,15 +28,16 @@ export default {
 
   data() {
     return {
-      user: this.$store.getters["currentUser"].user
+      user: this.$store.getters["currentUser"]
     };
   },
   computed: {
     currentUser() {
       return this.$store.getters["currentUser"];
     }
-  },
 
+
+},
   methods: {
 
 
@@ -44,6 +45,8 @@ export default {
       console.log("kkk");
       const apiRes = await axios.get(process.env.VUE_APP_BACKEND_URL + "/");
       this.user = apiRes.data;
+
+ 
     },
     async modificationUser(id) {
       await axios.patch(process.env.VUE_APP_BACKEND_URL + "/" + id);

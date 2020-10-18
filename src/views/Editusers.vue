@@ -41,11 +41,13 @@ export default {
       const apiRes = await axios.get(
         process.env.VUE_APP_BACKEND_URL + "/" + id
       );
-      this.user = apiRes.data;
+      // ici je recois l'user que je cherche par l'id et je luis donne a mon data user
+      this.user = apiRes.data; 
       //je vais allee recuperer l user grace à son id avec le axios ensuite j 'insere cette user qui est dans le api res dans le user data
 
       this.email = this.user.email;
       this.tel = this.user.tel;
+      //le vide tu le remplace pas le nouveau
       // axios retourne TJS les results sous la clé data
     },
 

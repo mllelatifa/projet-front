@@ -27,29 +27,23 @@ export default {
     async postConger() {
       // async il va dire au js  cette fonction est unne function asyscron
       //await
-
       // axio permet de faire  des requetes
       //  dans ce cas precit nous fesesont une mise à jour (patch )
       //  cette demande de mise à jours (donc patch ) il attent deux parametre l'url et un objet
       //l url est celui de mon back et l objet contient les donner de l'user qui vont etre modifier
       // const apiRes = await axios.patch(process.env.VUE_APP_BACKEND_URL + "/conger/" + this.conger._id, {debut:this.debut,fin:this.fin});
-
       //  dans un 1 er temps  await donnera a l api res une promess (c est un objet )
       // l 'orque axio ptch aura fini sont travail (donc mettre a jour l user ) il donnera les donner a api res'
-
       //  console.log(apiRes.data)
       // this.debut = apiRes.data;
       //  axios retourne TJS les results sous la clé data
-
       // let debut = moment([this.conger.debut]);
       // let fin = moment([this.conger.fin]);
-
       this.conger.jours =
-        moment(this.conger.fin).diff(moment(this.conger.debut), "days") + 1;
-
-      const restantsUser = this.$store.getters["currentUser"].user.restants;
+        moment(this.conger.fin).diff(moment(this.conger.debut), "days") +1;
+      const restantsUser = this.$store.getters["currentUser"].user.restants+1 ;
       if (
-        moment().isBefore(this.conger.debut) ||
+        moment().isBefore(this.conger.debut) &&
         moment().isBefore(this.conger.fin)
       ) {
         if (moment(this.conger.fin).isBefore(this.conger.debut)) {
@@ -79,7 +73,6 @@ export default {
       }
     },
     //  axios retourne TJS les results sous la clé data
-
     // une fois que le component a etait cree, la function created  sera executer juste aprer
     created() {
       try {
@@ -101,7 +94,6 @@ button {
   border: 2px solid white;
   margin-top: 35px;
 }
-
 input {
   border-radius: 7px;
   padding-top: 12px;
@@ -110,19 +102,16 @@ input {
   padding-left: 8px;
   border: 2px solid gray;
 }
-
 label {
   margin-top: 33px;
   font-size: 20px;
   font-weight: bold;
 }
-
 @media screen and (min-width: 1300px) {
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     background-repeat: no-repeat;
     background-color: #8dd8f8;
     align-items: center;
@@ -130,20 +119,17 @@ label {
     min-height: 100vh;
   }
 }
-
 @media screen and (min-width: 1024px) {
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     background-repeat: no-repeat;
     background-color: #8dd8f8;
     align-items: center;
     min-height: 100vh;
   }
 }
-
 @media screen and (min-width: 680px) and (max-width: 1023px) {
   /* formulaire */
   form {
@@ -155,7 +141,6 @@ label {
     align-items: center;
   }
 }
-
 @media screen and (max-width: 679px) {
   form {
     display: flex;

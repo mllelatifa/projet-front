@@ -1,5 +1,5 @@
 <template>
-  <form action>
+  <form >
     <p>Inscription des salariés</p>
 
    
@@ -22,6 +22,7 @@
       type="email"
       class="input-text input"
       placeholder="votre mail"
+      required
       v-model="post.email"
     />
 
@@ -31,6 +32,7 @@
       class="input-text input"
       placeholder="Entre un mot de passe"
       name="password"
+      required
       v-model="post.motdepasse"
     />
 
@@ -38,11 +40,13 @@
       type="date"
       placeholder="entrer la date de naissance "
       v-model="post.datedenaissance"
+      required
     />
     <input
       type="number"
       placeholder="entrer le numéro de téléphone "
       v-model="post.tel"
+      required
     />
 
     <button @click.prevent="register" type="submit">Valider</button>
@@ -72,6 +76,7 @@ export default {
         // axios post a deux parametre un string et un objet le l url du back  et le deuxieme paramettre il prend l Object
         // user'
         .then(res => {
+   
           alert("Votre enregistrement s'est déroulée avec succès");
           console.log(res);
         })

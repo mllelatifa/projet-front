@@ -11,9 +11,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
-    user: null
+    user: null,
     
- 
   },
   getters: {
     currentUser(state) { // recuperer l user du store
@@ -22,17 +21,23 @@ export default new Vuex.Store({
   },
   mutations: {
     setUser (state, user) {  //mettre a jour le store
+      // console.log("MUTATION ", user)
       state.user = user;
     },
+
+   
+
     setUserNull(state){
       state.user=null;
     }
   },
 
   actions : {
+  
     signout(context){
       console.log("DEONNECTION : ")
       context.commit("setUserNull");
     }
+    
   }
 });

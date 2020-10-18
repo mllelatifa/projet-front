@@ -9,6 +9,7 @@
         class="input-text input"
         placeholder="Identifiant"
         v-model="user.email"
+        required
       />
 
       <input
@@ -17,6 +18,7 @@
         class="input-text input"
         placeholder="Mot de passe"
         v-model="user.motdepasse"
+        required
       />
 
       <a @click="afficherLeMotDePasse()" v-if="visible == 'password'"
@@ -41,9 +43,17 @@ export default {
       user: {
         email: "",
         motdepasse: "",
+        role:""
         
       }
+      
     };
+     
+  },
+   computed: {
+    currentUser() {
+      return this.$store.getters["currentUser"];
+    }
   },
   methods: {
     login() {
@@ -53,8 +63,17 @@ export default {
           localStorage.setItem("currentUser", JSON.stringify(res.data)); // stock l'user connecté en JSON dans le localStorage
 
           this.$store.commit("setUser", res.data); //stoke dans le store
-         
+        
+        console.log("hamidou",res.data.user.role)
+         if(res.data.user.role==="animateur")
           this.$router.push({ path: "accueil" });
+         else
+          this.$router.push({ path: "dashboardAdmin" });
+        
+  
+         
+        
+          
         })
         .catch(err => {
           console.log("err-------->", err);

@@ -8,6 +8,7 @@
         id="email"
         type="email"
         class="input-text input"
+        required
         placeholder="email"
       />
       <label>Numéro de Portable: </label>
@@ -16,6 +17,7 @@
         id="number"
         type="text"
         class="input-text input"
+        required
         placeholder="tel"
       /><label>Mot de passe: </label>
       <input
@@ -23,12 +25,13 @@
         id="number"
         type="password"
         class="input-text input"
+      
         placeholder="num"
       />
-       <router-link  @click="modificationUser()" :to="'/about/' + user._id">
+      
        
-      </router-link>
-      <button @click="modificationUser()" :to="'/about/' + user._id" >Confirmer</button>
+    
+      <button @click.prevent="modificationUser()" :to="'/about/' + user._id" >Confirmer</button>
     </form>
   </div>
 </template>
@@ -52,26 +55,29 @@ export default {
     async modificationUser() {
       const id_user = this.$store.getters["currentUser"].user._id;
 
-      await axios.patch(
-        process.env.VUE_APP_BACKEND_URL + "/updateUser/" + id_user,
-        {
-          email: this.user.email,
-          tel: this.user.tel,
-          motdepasse: this.user.motdepasse,
+    try {
+      const userModified = await axios.patch(process.env.VUE_APP_BACKEND_URL + "/updateUser/" + id_user,
+      {
+        email: this.user.email,
+        //onfait un nouveau objet et on lui envoyer la nouvelle valeur
+        tel: this.user.tel,
+        motdepasse: this.user.motdepasse === "" ? null : this.user.motdepasse,
+      })
 
-        },
+      this.$store.commit("setUser",userModified);
+      
+    } catch (error) {
+      console.error(error)
+    }
 
-     
-        
-      );
-     
-    },
-
+      
+  },
+    
     getCurrentUser() {
       this.user.motdepasse = "";
       this.user.tel = this.$store.getters["currentUser"].user.tel; //on donne le store au data
       this.user.email = this.$store.getters["currentUser"].user.email;
-       this.user.$forceUpdate ()
+       
    
 
   
